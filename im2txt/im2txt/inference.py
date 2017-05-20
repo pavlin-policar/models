@@ -57,14 +57,14 @@ for file_pattern in FLAGS.input_files.split(","):
 tf.logging.info("Running caption generation on %d files matching %s",
               len(filenames), FLAGS.input_files)
 
-with tf.Session(graph=g) as sess:
-    # Load the model from checkpoint.
-    restore_fn(sess)
+sess = tf.Session(graph=g)
+# Load the model from checkpoint.
+restore_fn(sess)
 
-    # Prepare the caption generator. Here we are implicitly using the default
-    # beam search parameters. See caption_generator.py for a description of the
-    # available beam search parameters.
-    generator = caption_generator.CaptionGenerator(model, vocab)
+# Prepare the caption generator. Here we are implicitly using the default
+# beam search parameters. See caption_generator.py for a description of the
+# available beam search parameters.
+generator = caption_generator.CaptionGenerator(model, vocab)
 
 
 def evaluate(filename):

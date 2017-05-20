@@ -67,7 +67,7 @@ with tf.Session(graph=g) as sess:
     generator = caption_generator.CaptionGenerator(model, vocab)
 
 
-def eval(filename):
+def evaluate(filename):
     with tf.gfile.GFile(filename, "rb") as f:
         image = f.read()
     captions = generator.beam_search(sess, image)

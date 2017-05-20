@@ -45,12 +45,11 @@ tf.logging.set_verbosity(tf.logging.INFO)
 g = tf.Graph()
 with g.as_default():
     model = inference_wrapper.InferenceWrapper()
-    restore_fn = model.build_graph_from_config(configuration.ModelConfig(),
-                                           FLAGS.checkpoint_path)
+    restore_fn = model.build_graph_from_config(configuration.ModelConfig(), "/app/model.ckpt-2000000")
 g.finalize()
 
 # Create the vocabulary.
-vocab = vocabulary.Vocabulary(FLAGS.vocab_file)
+vocab = vocabulary.Vocabulary("/app/word_counts.txt")
 
 filenames = []
 for file_pattern in FLAGS.input_files.split(","):
